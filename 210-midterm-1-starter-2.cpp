@@ -125,15 +125,15 @@ public:
 
         delete temp; //free memory
     }
-
+    // add node to end of list
     void push_back(int v) {
-        Node* newNode = new Node(v);
+        Node* newNode = new Node(v); // create new node
         if (!tail)
             head = tail = newNode;
         else {
-            tail->next = newNode;
+            tail->next = newNode; // Link new node after current node tail
             newNode->prev = tail;
-            tail = newNode;
+            tail = newNode; // update tail to point to new node
         }
     }
     
@@ -147,22 +147,22 @@ public:
             head = newNode;
         }
     }
-    
+    // add node to front of list using pop
     void pop_front() {
 
         if (!head) {
-            cout << "List is empty." << endl;
+            cout << "List is empty." << endl; // if empty list  new node becomes head and tail
             return;
         }
 
-        Node * temp = head;
+        Node * temp = head; 
 
-        if (head->next) {
-            head = head->next;
-            head->prev = nullptr;
+        if (head->next) { // if there are multiple nodes 
+            head = head->next; // move head pointer  to next node
+            head->prev = nullptr; // clear heads prev pointer
         }
         else
-            head = tail = nullptr;
+            head = tail = nullptr; //if one node list becomes empty
         delete temp;
     }
 
