@@ -163,7 +163,7 @@ public:
         }
         else
             head = tail = nullptr; //if one node list becomes empty
-        delete temp;
+        delete temp; // free memory
     }
 
     void pop_back() {
@@ -171,43 +171,46 @@ public:
             cout << "List is empty." << endl;
             return;
         }
-        Node * temp = tail;
+        Node * temp = tail; // store reference to current tail
 
-        if (tail->prev) {
-            tail = tail->prev;
-            tail->next = nullptr;
+        if (tail->prev) { // check if multiple tails
+            tail = tail->prev; //move tail pointer
+            tail->next = nullptr; // clear pointer
         }
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr; // if only one node list is empty
+        delete temp; //free memory
     }
-
+    // Destructor clean up
     ~DoublyLinkedList() {
         while (head) {
-            Node* temp = head;
-            head = head->next;
-            delete temp;
+            Node* temp = head; // store current node
+            head = head->next;// move head to next node
+            delete temp; // delete stored node
         }
     }
+    //Print list from head to tail 
     void print() {
-        Node* current = head;
-        if (!current) {
+        Node* current = head; // start at head
+        if (!current) { // check if list is empty
             cout << "List is empty." << endl;
             return;
         }
+        // Traverse through list again
         while (current) {
             cout << current->data << " ";
-            current = current->next;
+            current = current->next; // move to next node
         }
         cout << endl;
     }
-
+// print from tail to head
     void print_reverse() {
         Node* current = tail;
         if (!current) { 
             cout << "List is empty." << endl;
             return;
         }
+        //traverse list  and print each value
         while (current) {
             cout << current->data << " ";
             current = current->prev;
