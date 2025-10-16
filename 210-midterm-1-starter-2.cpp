@@ -31,23 +31,25 @@ public:
             cout << "Position must be >= 0." << endl;
             return;
         }
-
+          //create new node with value
         Node* newNode = new Node(value);
+        // if list is empty then new node becomes head and tail
         if (!head) {
-            head = tail = newNode;
+            head = tail = newNode;  // new node head tail
             return;
         }
-
+         // Traverse her to see if node at location
         Node* temp = head;
         for (int i = 0; i < position && temp; ++i)
-            temp = temp->next;
-
+            temp = temp->next; // here move temp to next forward
+          
+            // error handling if position exceeds size report (housekeeping)
         if (!temp) {
             cout << "Position exceeds list size. Node not inserted.\n";
             delete newNode;
             return;
         }
-
+         // here this will link node into list
         newNode->next = temp->next;
         newNode->prev = temp;
         if (temp->next)
