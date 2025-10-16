@@ -82,42 +82,48 @@ public:
 
         delete temp; // free memory allocated for delete node
     }
-
+     //Delete node at specified position
     void delete_pos(int pos) {
+    // check if list is empty
         if (!head) {
             cout << "List is empty." << endl;
             return;
         }
-    
+         // pop function to detele the first position
         if (pos == 1) {
             pop_front();
             return;
         }
     
+        // continue to travers to find node at specified position
         Node* temp = head;
     
         for (int i = 1; i < pos; i++){
+       // check if position exists     
             if (!temp) {
                 cout << "Position doesn't exist." << endl;
                 return;
             }
             else
-                temp = temp->next;
+                temp = temp->next; // move temp pointer forward
         }
         if (!temp) {
             cout << "Position doesn't exist." << endl;
             return;
         }
-    
+          // delete last position
         if (!temp->next) {
             pop_back();
             return;
         }
     
+        //Get node befor  the one to delete
         Node* tempPrev = temp->prev;
         tempPrev->next = temp->next;
+        // bypass  moving backward
         temp->next->prev = tempPrev;
-        delete temp;
+
+        delete temp; //free memory
     }
 
     void push_back(int v) {
