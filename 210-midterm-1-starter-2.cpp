@@ -62,25 +62,25 @@ public:
     void delete_val(int value) {
         if (!head) return; // if list is empty nothing to delete error (housekeeping)
 
-        // search for node with matching valuevalue
+        // search for node with matching value
         Node* temp = head;
         
-        while (temp && temp->data != value)
-            temp = temp->next;
+        while (temp && temp->data != value) 
+            temp = temp->next; // move temp pointer forward
 
-        if (!temp) return; 
+        if (!temp) return; // if value not found exit (return)
 
-        if (temp->prev)
+        if (temp->prev) // update previous node next pointer if temp is not found
             temp->prev->next = temp->next;
         else
-            head = temp->next; 
+            head = temp->next; // if temp is head, update head pointer
 
-        if (temp->next)
+        if (temp->next) //  update next nodes previous pointer
             temp->next->prev = temp->prev;
         else
-            tail = temp->prev; 
+            tail = temp->prev; // if temp is tail update tail pointer
 
-        delete temp;
+        delete temp; // free memory allocated for delete node
     }
 
     void delete_pos(int pos) {
