@@ -50,18 +50,19 @@ public:
             return;
         }
          // here this will link node into list
-        newNode->next = temp->next;
+        newNode->next = temp->next; // new node  poits to next to temps next
         newNode->prev = temp;
         if (temp->next)
-            temp->next->prev = newNode;
+            temp->next->prev = newNode; // Link new node's previous to current temp node
         else
-            tail = newNode;
-        temp->next = newNode;
+            tail = newNode;  // if temp is tail 
+        temp->next = newNode; // new node is now tail
     }
-
+    // delete node containing specified value
     void delete_val(int value) {
-        if (!head) return;
+        if (!head) return; // if list is empty nothing to delete error (housekeeping)
 
+        // search for node with matching valuevalue
         Node* temp = head;
         
         while (temp && temp->data != value)
